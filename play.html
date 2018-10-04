@@ -1,0 +1,106 @@
+
+<html>
+    <head>
+      <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Free to play, reaction game.">
+        <meta name="keywords" content="free to play reaction game">
+        <meta name="author" content="Starthy">
+        <link rel="stylesheet" href="./css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Exo 2' rel='stylesheet'>
+        <title>Hexchi | Play</title>
+
+        <style type="text/css">
+            body {
+                font-family: 'Exo 2' ;font-size: 16px;
+background-color:#2C2F33; /* grey color */
+            }
+
+            #shape {
+    background: red;
+    height: 100px;
+    position: relative;
+    width: 20px;
+  }
+
+  #shape:after {
+    background: white;
+    content: "";
+    height: 20px;
+    left: -40px;
+    position: absolute;
+    top: 40px;
+    width: 100px;
+  }
+            .bold {
+                font-weight: bold;
+            }
+            #quick{
+              height: 40px;
+              margin-top: -18px;
+            }
+            #time{
+              height: 40px;
+              margin-top: -18px;
+            }
+h1{
+  text-align: center;
+}
+        </style>
+    </head>
+    <body>
+      <header>
+        <div class="container">
+          <div id="branding">
+            <h1><span class="highlight">Hexchi</span></h1>
+            <p><span class="light"><i>Web Client</i></span></h1>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="updates.html">Updates</a></li>
+              <li><a href="the_team.html">Team</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+<div id="time" class="alert alert-danger" role="alert">
+  <p class="light"><br> Your time: <span id="timeTaken"></span></p>
+  <div id="shape" onmousedown="hit.play()"></div>
+</div>
+
+        <script type="text/javascript">
+            var start = new Date().getTime(); // grab the current time
+            function makeShapeAppear() {
+                var top = Math.random() * 400;
+                var left = Math.random() * 1200;
+                var width = (Math.random() * 200) + 200;
+                document.getElementById("shape").style.backgroundColor = "white"; // color of "+" shape
+                document.getElementById("shape").style.top = top + "px";
+                document.getElementById("shape").style.left = left + "px";
+                document.getElementById("shape").style.display = "block";
+                start = new Date().getTime(); // get the current time
+            }
+            function appearAfterDelay() {
+                setTimeout(makeShapeAppear,200); // makes the shape appear
+            }
+            appearAfterDelay();
+            document.getElementById("shape").onclick = function() {
+                document.getElementById("shape").style.display = "none";
+                var end = new Date().getTime();
+                var timeTaken = (end - start) / 1000; // shows . e.g if the time was 0.212s instead of showing 212
+                document.getElementById("timeTaken").innerHTML = timeTaken + "s";
+                appearAfterDelay();
+            }
+          var hit=new Audio();
+          hit.src="./sounds/beep_ping.wav"; // im sorry
+
+        </script>
+
+
+
+    </body>
+
+</html>
